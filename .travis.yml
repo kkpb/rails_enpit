@@ -4,3 +4,19 @@ rvm:
 - 1.9.3
 - jruby-19mode
 - rbx-2
+deploy:
+  provider: heroku
+  api_key:
+    secure: N81ieH/zJ9YkxJcGJJSKuqOzfiUWZbME7bIb9vUEGI4cVWEdGmlWxio1iS6iGc3R4rPaO2vq/5mbZ69Z2x8eT4zzdNsinkQpfXHWUQhGZJIQvCTQApvA6iId8dPCEhZvcc73CxSs63OPGPJuEutpH59UrSPPVNbZJ6D/8lf8uAM=
+  app: limitless-forest-1233
+  on:
+    repo: kkpb/rails_enpit
+test:
+  adapter: postgresql
+  database: travis_ci_test
+  username: postgres
+addons:
+  postgresql: "9.3"
+before_script:
+  - psql -c 'create database travis_ci_test;' -U postgres
+  - cp config/database.yml.travis config/database.yml
