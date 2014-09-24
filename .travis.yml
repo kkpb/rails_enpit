@@ -8,11 +8,8 @@ deploy:
   app: limitless-forest-1233
   on:
     repo: kkpb/rails_enpit
-test:
-  adapter: postgresql
-  database: travis_ci_test
-  username: postgres
 addons:
   postgresql: "9.3"
 before_script:
   - psql -c 'create database travis_ci_test;' -U postgres
+  - cp config/database.yml.travis config/database.yml
